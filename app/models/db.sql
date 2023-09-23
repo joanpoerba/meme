@@ -1,0 +1,12 @@
+-- Active: 1650355398407@@127.0.0.1@3306@meme
+USE meme;
+SHOW TABLES;
+DROP TABLE usersData;
+CREATE TABLE user(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(12) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL UNIQUE,
+  accountDescription TEXT,
+  pronunciation VARCHAR(10)
+);
+SELECT * FROM user;

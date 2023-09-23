@@ -1,0 +1,16 @@
+{
+    "name": "meme/meme",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Meme\\": ["app/controllers/", "app/core/"]
+        }
+    },
+    "authors": [
+        {
+            "name": "joanpurba",
+            "email": "joanpurba4@gmail.com"
+        }
+    ],
+    "require": {}
+}
