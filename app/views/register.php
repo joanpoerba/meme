@@ -25,13 +25,32 @@ require_once "app/models/RegisterFunction.php";
     <form class="mt-2" action="" method="post">
       <input style="outline: none;" class="col-12 border-1 border-secondary px-3 py-1 rounded-1" type="text" placeholder="Username" name="username" autocomplete="off" maxlength="12" autofocus>
       <div class="col-12 mt-4 d-flex justify-content-between px-3 py-1 border border-1 border-secondary rounded-1">
-        <input style="outline: none;" class="border-0 bg-transparent" type="password" placeholder="Password" name="password" autocomplete="off">
-        <i style="cursor: pointer;" class="bi bi-eye-slash-fill fs-5"></i>
+        <input style="outline: none;" class="passwordInput border-0 bg-transparent" placeholder="Password" name="password" autocomplete="off">
+        <i style="cursor: pointer;" class="eye"></i>
       </div>
       <button class="col-12 btn btn-warning py-1 rounded-1 fw-semibold text-light mt-4" name="signUpButton">Sign up</button>
       <p class="m-0 mt-2">Have any account? <a href="login" class="text-primary">Sign in</a></p>
     </form>
   </div>
+  <script src="vendor/components/jquery/jquery.js"></script>
+  <script>
+    $(window).ready(function() {
+      $(".eye").addClass("bi bi-eye-slash-fill fs-5")
+      $(".passwordInput").attr("type", "password")
+      $(".eye").on("click", function() {
+        $(".eye").toggleClass("eyeActive")
+        if ($(".eye").hasClass("eyeActive")) {
+          $(".eye").removeClass("bi bi-eye-slash-fill fs-5")
+          $(".eye").addClass("bi bi-eye-fill fs-5")
+          $(".passwordInput").attr("type", "text")
+        } else {
+          $(".eye").removeClass("bi bi-eye-fill fs-5")
+          $(".eye").addClass("bi bi-eye-slash-fill fs-5")
+          $(".passwordInput").attr("type", "password")
+        }
+      })
+    })
+  </script>
 </body>
 
 </html>

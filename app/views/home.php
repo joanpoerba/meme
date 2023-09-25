@@ -1,3 +1,6 @@
+<?php
+require_once "app/models/ShowData.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +12,6 @@
 </head>
 
 <body>
-  ini home
 </body>
 
 </html>

@@ -12,5 +12,7 @@
             "email": "joanpurba4@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "components/jquery": "^3.7"
+    }
 }
