@@ -12,7 +12,7 @@ Dibuat oleh [https://www.instagram.com/joanorlandopurba/](https://www.instagram.
 Tech Stacks
 --------------------
 
-<p style="display: flex; align-items: center;" align="center">
+<div style="display: flex; flex-direction: row; align-items: center;" align="center">
     <a href="https://getbootstrap.com/">
         <img style="width: 100px;" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" alt="Bootstrap">
     </a>
@@ -22,7 +22,7 @@ Tech Stacks
     <a href="https://www.mysql.com/">
         <img style="width: 100px;" src="https://upload.wikimedia.org/wikipedia/fr/thumb/6/62/MySQL.svg/1200px-MySQL.svg.png" alt="MySql">
     </a>
-</p>
+</div>
 
 Security Reports
 ----------------
