@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://github.com/joanpoerba/meme">
-        <img style="width: 100px;" src="public/img/logo.png" alt="Meme">
+        <img style="width: 400px;" src="public/img/logo.png" alt="Meme">
     </a>
 </p>
 <h1 align="center">Meme</h1>
@@ -12,7 +12,7 @@ Dibuat oleh [https://www.instagram.com/joanorlandopurba/](https://www.instagram.
 Tech Stacks
 --------------------
 
-<p align="center">
+<p style="display: flex; align-items: center;" align="center">
     <a href="https://getbootstrap.com/">
         <img style="width: 100px;" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" alt="Bootstrap">
     </a>
