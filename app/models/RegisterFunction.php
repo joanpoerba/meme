@@ -1,12 +1,13 @@
 <?php
 
-require_once "Connection.php";
+require_once "init.php";
 
 session_start();
 $_SESSION["data"] = [
   "sameUsername" => null,
   "userUsername" => null,
   "userPassword" => null,
+  "loginStatus" => null
 ];
 
 class RegisterFunction extends Connection
@@ -23,6 +24,7 @@ class RegisterFunction extends Connection
       $checkUsernameStatement->bind_param("s", $this->userUsername);
       $checkUsernameStatement->execute();
       $result = $checkUsernameStatement->get_result();
+
       if ($result->num_rows) {
         $_SESSION["data"] = [
           "sameUsername" => true
@@ -33,6 +35,7 @@ class RegisterFunction extends Connection
           "userUsername" => $this->userUsername,
           "userPassword" => $this->userPassword
         ];
+
         $registerQuery = "INSERT INTO user(username, password) VALUE(?, ?)";
         $registerStatement = new mysqli_stmt($this->connection(), $registerQuery);
 

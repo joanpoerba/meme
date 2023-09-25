@@ -1,5 +1,5 @@
 <?php
-require_once "app/models/ShowData.php";
+require_once "app/models/HomeFunction.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

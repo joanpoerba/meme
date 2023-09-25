@@ -1,6 +1,8 @@
 <?php
 
-class Connection
+require_once "init.php";
+
+class Connection extends RedirectFunction
 {
   public $connection;
   public function connection(): mixed

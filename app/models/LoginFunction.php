@@ -1,6 +1,6 @@
 <?php
 
-require_once "Connection.php";
+require_once "init.php";
 
 session_start();
 $_SESSION["wrongStatus"] = [
@@ -8,6 +8,13 @@ $_SESSION["wrongStatus"] = [
   "wrongUsername" => null,
   "wrongPassword" => null,
   "wrongBoth" => null,
+];
+
+$_SESSION["data"] = [
+  "sameUsername" => null,
+  "userUsername" => null,
+  "userPassword" => null,
+  "loginStatus" => null
 ];
 
 class LoginFunction extends Connection
@@ -30,17 +37,30 @@ class LoginFunction extends Connection
       if ($result["username"] == $this->userUsername) {
         if (password_verify($this->userPassword, $hashedPassword)) {
           $_SESSION["wrongStatus"]["wrong"] = false;
+
+          $this->redirect("/", $_SESSION["data"] = [
+            "sameUsername" => null,
+            "userUsername" => $this->userUsername,
+            "userPassword" => $this->userPassword,
+            "loginStatus" => true
+          ]);
         } else {
           $_SESSION["wrongStatus"]["wrong"] = true;
           $_SESSION["wrongStatus"]["wrongPassword"] = true;
+
+          $_SESSION["data"]["loginStatus"] = false;
         }
       } else {
         if (password_verify($this->userPassword, $hashedPassword)) {
           $_SESSION["wrongStatus"]["wrong"] = true;
           $_SESSION["wrongStatus"]["wrongUsername"] = true;
+
+          $_SESSION["data"]["loginStatus"] = false;
         } else {
           $_SESSION["wrongStatus"]["wrong"] = true;
           $_SESSION["wrongStatus"]["wrongBoth"] = true;
+
+          $_SESSION["data"]["loginStatus"] = false;
         }
       }
     }
