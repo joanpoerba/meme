@@ -17,4 +17,21 @@ CREATE TABLE post(
   dateTime DATETIME,
   CONSTRAINT fk_user FOREIGN KEY (userId) REFERENCES user(id)
 );
-SELECT * FROM user;
+ALTER TABLE post MODIFY dateTime DATETIME DEFAULT NOW();
+ALTER TABLE post MODIFY username VARCHAR(255) NOT NULL AFTER id;
+ALTER TABLE post DROP COLUMN userId;
+ALTER TABLE post DROP CONSTRAINT fk_user;
+ALTER TABLE post ADD CONSTRAINT fk_user FOREIGN KEY (userId) REFERENCES user(id);
+ALTER TABLE post ADD userId INT NOT NULL AFTER id;
+SELECT * FROM post;
+DESC user;
+CREATE TABLE post(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  userId INT NOT NULL,
+  image BLOB,
+  postDescription TEXT,
+  dateTime DATETIME DEFAULT NOW(),
+  CONSTRAINT fk_user FOREIGN KEY (userId) REFERENCES user(id)
+);
+DROP TABLE post;
+SELECT user.id, user.username, post.image, post.postDescription FROM user INNER JOIN post WHERE user.id = post.userId ORDER BY post.dateTime DESC;

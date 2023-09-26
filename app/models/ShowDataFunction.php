@@ -4,22 +4,15 @@ require_once "init.php";
 
 class ShowData extends Connection
 {
-  public function __construct()
+  public function data()
   {
-    $showQuery = "SELECT * FROM user";
+    $showQuery = "SELECT user.id, user.username, post.image, post.postDescription, post.dateTime FROM user INNER JOIN post WHERE user.id = post.userId ORDER BY post.dateTime DESC";
     $showStatement = new mysqli_stmt($this->connection(), $showQuery);
 
     if ($showStatement->prepare($showQuery)) {
       $showStatement->execute();
       $result = $showStatement->get_result();
-
-      foreach ($result as $datas) {
-        $datas = json_encode($datas);
-
-        print_r($datas);
-      }
+      return $result;
     }
   }
 }
-
-$data = new ShowData;

@@ -1,5 +1,10 @@
 <?php
-require_once "app/models/HomeFunction.php";
+require_once "app/models/init.php";
+require_once "app/models/ShowDataFunction.php";
+
+$datas = new ShowData;
+$datas = $datas->data();
+$Access = new HomeAccessRequirementsFunction;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,8 +18,9 @@ require_once "app/models/HomeFunction.php";
 
 <body class="m-0 p-0">
   <?php require_once "public/components/header.php" ?>
+  <?php require_once "public/components/upload.php" ?>
   <?php require_once "public/components/body.php" ?>
-  <script src="<?php AssetFunction::asset("js/bootstrap.js") ; ?>"></script>
+  <script src="<?php AssetFunction::asset("js/bootstrap.js"); ?>"></script>
 </body>
 
 </html>

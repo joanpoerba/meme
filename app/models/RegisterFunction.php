@@ -2,7 +2,6 @@
 
 require_once "init.php";
 
-session_start();
 $_SESSION["data"] = [
   "sameUsername" => null,
   "userUsername" => null,
@@ -16,7 +15,7 @@ class RegisterFunction extends Connection
     $this->userUsername = htmlspecialchars(mysqli_real_escape_string($this->connection(), $userUsername));
     $this->userPassword = password_hash(htmlspecialchars(mysqli_real_escape_string($this->connection(), $userPassword)), PASSWORD_BCRYPT);
 
-    $checkUsernameQuery = "SELECT username FROM user WHERE username = ?";
+    $checkUsernameQuery = "SELECT * FROM user WHERE username = ?";
     $checkUsernameStatement = new mysqli_stmt($this->connection(), $checkUsernameQuery);
 
     if ($checkUsernameStatement->prepare($checkUsernameQuery)) {
@@ -40,6 +39,14 @@ class RegisterFunction extends Connection
         if ($registerStatement->prepare($registerQuery)) {
           $registerStatement->bind_param("ss", $this->userUsername, $this->userPassword);
           $registerStatement->execute();
+
+          $result = $result->fetch_assoc();
+
+          $this->redirect("/", $_SESSION["data"] = [
+            "sameUsername" => null,
+            "userId" => $result["id"],
+            "loginStatus" => true
+          ]);
         }
       }
     }

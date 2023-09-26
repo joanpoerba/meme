@@ -25,8 +25,8 @@ if (isset($_COOKIE["id"])) {
   }
 }
 
-if(isset($_SESSION["data"])){
-  if($_SESSION["data"]["loginStatus"] == true){
+if (isset($_SESSION["data"])) {
+  if ($_SESSION["data"]["loginStatus"] == true) {
     header("location: http://localhost/meme/");
   }
 }
@@ -38,17 +38,18 @@ class LoginFunction extends Connection
     $this->userUsername = htmlspecialchars(mysqli_real_escape_string($this->connection(), $userUsername));
     $this->userPassword = htmlspecialchars(mysqli_real_escape_string($this->connection(), $userPassword));
 
-    $checkUsernameQuery = "SELECT * FROM user";
+    $checkUsernameQuery = "SELECT * FROM user WHERE username = ?";
     $checkUsernameStatement = new mysqli_stmt($this->connection(), $checkUsernameQuery);
 
     if ($checkUsernameStatement->prepare($checkUsernameQuery)) {
+      $checkUsernameStatement->bind_param("s", $this->userUsername);
       $checkUsernameStatement->execute();
       $result = $checkUsernameStatement->get_result();
-      $result = $result->fetch_assoc();
 
-      $hashedPassword = $result["password"];
+      if ($result->num_rows == 1) {
+        $result = $result->fetch_assoc();
+        $hashedPassword = $result["password"];
 
-      if ($result["username"] == $this->userUsername) {
         if (password_verify($this->userPassword, $hashedPassword)) {
           $_SESSION["wrongStatus"]["wrong"] = false;
 
@@ -68,6 +69,7 @@ class LoginFunction extends Connection
           $_SESSION["data"]["loginStatus"] = false;
         }
       } else {
+        global $hashedPassword;
         if (password_verify($this->userPassword, $hashedPassword)) {
           $_SESSION["wrongStatus"]["wrong"] = true;
           $_SESSION["wrongStatus"]["wrongUsername"] = true;
