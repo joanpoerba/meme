@@ -70,6 +70,7 @@ class LoginFunction extends Connection
         }
       } else {
         global $hashedPassword;
+
         if (password_verify($this->userPassword, $hashedPassword)) {
           $_SESSION["wrongStatus"]["wrong"] = true;
           $_SESSION["wrongStatus"]["wrongUsername"] = true;

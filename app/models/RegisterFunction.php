@@ -39,12 +39,20 @@ class RegisterFunction extends Connection
         if ($registerStatement->prepare($registerQuery)) {
           $registerStatement->bind_param("ss", $this->userUsername, $this->userPassword);
           $registerStatement->execute();
+        }
 
-          $result = $result->fetch_assoc();
+        $getIdQuery = "SELECT id FROM user WHERE username = ?";
+        $getIdStatement = new mysqli_stmt($this->connection(), $getIdQuery);
+
+        if ($getIdStatement->prepare($getIdQuery)) {
+          $getIdStatement->bind_param("s", $this->userUsername);
+          $getIdStatement->execute();
+          $getIdResult = $getIdStatement->get_result();
+          $getIdResult = $getIdResult->fetch_assoc();
 
           $this->redirect("/", $_SESSION["data"] = [
             "sameUsername" => null,
-            "userId" => $result["id"],
+            "userId" => $getIdResult["id"],
             "loginStatus" => true
           ]);
         }
