@@ -4,9 +4,17 @@ SHOW TABLES;
 DROP TABLE usersData;
 CREATE TABLE user(
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(12) NOT NULL UNIQUE,
+  user VARCHAR(12) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL UNIQUE,
   accountDescription TEXT,
   pronunciation VARCHAR(10)
+);
+CREATE TABLE post(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  userId INT NOT NULL,
+  image BLOB,
+  postDescription TEXT,
+  dateTime DATETIME,
+  CONSTRAINT fk_user FOREIGN KEY (userId) REFERENCES user(id)
 );
 SELECT * FROM user;

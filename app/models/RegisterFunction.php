@@ -6,7 +6,6 @@ session_start();
 $_SESSION["data"] = [
   "sameUsername" => null,
   "userUsername" => null,
-  "userPassword" => null,
   "loginStatus" => null
 ];
 
@@ -33,7 +32,6 @@ class RegisterFunction extends Connection
         $_SESSION["data"] = [
           "sameUsername" => false,
           "userUsername" => $this->userUsername,
-          "userPassword" => $this->userPassword
         ];
 
         $registerQuery = "INSERT INTO user(username, password) VALUE(?, ?)";

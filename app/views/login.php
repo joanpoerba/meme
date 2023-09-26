@@ -37,7 +37,7 @@ require_once "app/models/LoginFunction.php";
         <i style="cursor: pointer;" class="eye"></i>
       </div>
       <div class="mt-3 p-0 d-flex align-items-center">
-        <input style="width: 15px; height: 15px;" type="checkbox" id="rememberMe">
+        <input style="width: 15px; height: 15px;" type="checkbox" id="rememberMe" name="rememberMe">
         <label class="ms-2" for="rememberMe">Remember me</label>
       </div>
       <button class="col-12 btn btn-warning py-1 rounded-1 fw-semibold text-light mt-2" name="signInButton">Sign in</button>

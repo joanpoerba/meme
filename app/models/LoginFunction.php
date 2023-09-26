@@ -2,7 +2,6 @@
 
 require_once "init.php";
 
-session_start();
 $_SESSION["wrongStatus"] = [
   "wrong" => null,
   "wrongUsername" => null,
@@ -13,9 +12,24 @@ $_SESSION["wrongStatus"] = [
 $_SESSION["data"] = [
   "sameUsername" => null,
   "userUsername" => null,
-  "userPassword" => null,
   "loginStatus" => null
 ];
+
+if (isset($_COOKIE["id"])) {
+  if ($_COOKIE["id"] == $_COOKIE["id"]) {
+    $_SESSION["data"] = [
+      "sameUsername" => null,
+      "userId" => $_COOKIE["id"],
+      "loginStatus" => true
+    ];
+  }
+}
+
+if(isset($_SESSION["data"])){
+  if($_SESSION["data"]["loginStatus"] == true){
+    header("location: http://localhost/meme/");
+  }
+}
 
 class LoginFunction extends Connection
 {
@@ -38,10 +52,13 @@ class LoginFunction extends Connection
         if (password_verify($this->userPassword, $hashedPassword)) {
           $_SESSION["wrongStatus"]["wrong"] = false;
 
+          if (isset($_POST["rememberMe"])) {
+            setcookie("id", $result["id"], time() + 60);
+          }
+
           $this->redirect("/", $_SESSION["data"] = [
             "sameUsername" => null,
-            "userUsername" => $this->userUsername,
-            "userPassword" => $this->userPassword,
+            "userId" => $result["id"],
             "loginStatus" => true
           ]);
         } else {
