@@ -6,8 +6,11 @@ require_once "app/models/ShowUserPostFunction.php";
 $datas = new ShowData;
 $datas = $datas->data();
 
-$Access = new HomeAccessRequirementsFunction;
+$userDatas = new ShowUserPost;
+$userPosts = $userDatas->data($_SESSION["data"]["userId"]);
+$userData = $userDatas->userData($_SESSION["data"]["userId"]);
 
+$Access = new HomeAccessRequirementsFunction;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,9 +24,8 @@ $Access = new HomeAccessRequirementsFunction;
 
 <body class="m-0 p-0">
   <?php require_once "public/components/header.php" ?>
+  <?php require_once "public/components/userProfilBody.php" ?>
   <?php require_once "public/components/upload.php" ?>
-  <?php require_once "public/components/body.php" ?>
-
   <script src="<?php AssetFunction::asset("js/bootstrap.js"); ?>"></script>
 </body>
 

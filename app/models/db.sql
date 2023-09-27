@@ -35,5 +35,7 @@ CREATE TABLE post(
   CONSTRAINT fk_user FOREIGN KEY (userId) REFERENCES user(id)
 );
 DROP TABLE user;
-SELECT user.id, user.username, post.image, post.postDescription FROM user INNER JOIN post WHERE user.id = post.userId ORDER BY post.dateTime DESC;
+SELECT post.id, post.userId, post.image, post.postDescription, post.dateTime FROM post WHERE post.userId = 8;
 DELETE FROM user WHERE username = 'bob';
+SELECT * FROM user;
+UPDATE user SET pronunciation = 'he/him' WHERE id = 1;

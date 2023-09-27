@@ -3,7 +3,7 @@
     <?php foreach ($datas as $data) : ?>
       <div class="col-12 bg-light p-0 p-3 rounded-3 shadow">
         <a href="" class="d-flex flex-row align-items-center text-decoration-none">
-          <img style="width: 40px;" class="img-fluid rounded-circle" src="<?php AssetFunction::asset("img/unknown.webp") ?>" alt="">
+          <img style="width: 40px; height: 40px;" class="img-fluid rounded-circle" src="<?php AssetFunction::asset("img/post/" . $data["photoProfil"]) ?>" alt="">
           <p class="m-0 ms-3 fw-bold text-dark"><?= $data["username"]; ?></p>
         </a>
         <div class="my-3 border border-1 border-secondary-subtle rounded-2 p-3">

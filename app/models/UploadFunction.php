@@ -21,6 +21,8 @@ class UploadFunction extends Connection
 
         $insertStatement->bind_param("iss", $_SESSION["data"]["userId"], $imageNewName, $this->description);
         $insertStatement->execute();
+
+        header("Refresh:0");
       } else {
         return false;
       }

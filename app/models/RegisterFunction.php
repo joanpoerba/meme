@@ -10,6 +10,8 @@ $_SESSION["data"] = [
 
 class RegisterFunction extends Connection
 {
+  public $photoProfil = "unknown.webp";
+
   public function __construct(public string $userUsername, public string $userPassword)
   {
     $this->userUsername = htmlspecialchars(mysqli_real_escape_string($this->connection(), $userUsername));
@@ -33,11 +35,11 @@ class RegisterFunction extends Connection
           "userUsername" => $this->userUsername,
         ];
 
-        $registerQuery = "INSERT INTO user(username, password) VALUE(?, ?)";
+        $registerQuery = "INSERT INTO user(username, password, photoProfil) VALUE(?, ?, ?)";
         $registerStatement = new mysqli_stmt($this->connection(), $registerQuery);
 
         if ($registerStatement->prepare($registerQuery)) {
-          $registerStatement->bind_param("ss", $this->userUsername, $this->userPassword);
+          $registerStatement->bind_param("sss", $this->userUsername, $this->userPassword, $this->photoProfil);
           $registerStatement->execute();
         }
 
