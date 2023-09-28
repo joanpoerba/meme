@@ -29,4 +29,17 @@ class ShowUserPost extends Connection
       return $result;
     }
   }
+
+  public function detailPostData($id)
+  {
+    $showQuery = "SELECT post.id, post.userId, post.image, post.postDescription, post.dateTime FROM post WHERE post.id = ? ORDER BY post.dateTime DESC";
+    $showStatement = new mysqli_stmt($this->connection(), $showQuery);
+
+    if ($showStatement->prepare($showQuery)) {
+      $showStatement->bind_param("s", $id);
+      $showStatement->execute();
+      $result = $showStatement->get_result();
+      return $result;
+    }
+  }
 }

@@ -39,3 +39,4 @@ SELECT post.id, post.userId, post.image, post.postDescription, post.dateTime FRO
 DELETE FROM user WHERE username = 'bob';
 SELECT * FROM user;
 UPDATE user SET pronunciation = 'he/him' WHERE id = 1;
+SELECT post.id, post.userId, post.image, post.postDescription, post.dateTime FROM post WHERE post.id = 1 ORDER BY post.dateTime DESC;

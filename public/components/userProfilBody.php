@@ -7,9 +7,11 @@
         <p class="bg-dark p-2 rounded-2 text-light m-0 ms-2"><?= $data["pronunciation"]; ?></p>
       </div>
     <?php endforeach; ?>
-    <div class="row gy-4">
+    <div class="row container-lg gy-4">
       <?php foreach ($userPosts as $userPost) : ?>
-        <img class="col-4" style="object-fit: cover;" src="<?php AssetFunction::asset("img/post/" . $userPost["image"]) ?>" alt="">
+        <a class="col-4" href="http://localhost/meme/detailpost?id=<?= $userPost["id"]; ?>">
+          <img class="img-fluid w-100 h-100" style="object-fit: cover;" src="<?php AssetFunction::asset("img/post/" . $userPost["image"]) ?>" alt="">
+        </a>
       <?php endforeach; ?>
     </div>
   </section>
